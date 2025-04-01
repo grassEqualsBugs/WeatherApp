@@ -1,103 +1,103 @@
 import Image from "next/image";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+function getCurrentDate() {
+	const date = new Date();
+	const month = String(date.getMonth() + 1).padStart(2, "0");
+	const day = String(date.getDate()).padStart(2, "0");
+	const year = date.getFullYear();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+	return `${month}.${day}.${year}`;
+}
+
+export default function Home() {
+	const location = "San Francisco, CA";
+	const date = getCurrentDate();
+	const temperature = "72";
+	const conditions = "Sunny";
+	const fiveDayForecast = [
+		{
+			day: "Today",
+			temperature: "72",
+			conditions: "Sunny",
+		},
+		{
+			day: "Wed",
+			temperature: "56",
+			conditions: "Cloudy",
+		},
+		{
+			day: "Thu",
+			temperature: "40",
+			conditions: "Misty",
+		},
+		{
+			day: "Fri",
+			temperature: "70",
+			conditions: "Sunny",
+		},
+		{
+			day: "Sat",
+			temperature: "40",
+			conditions: "Rainy",
+		},
+		{
+			day: "Sun",
+			temperature: "90",
+			conditions: "Scorching",
+		},
+	];
+
+	return (
+		// main app
+		<div className="text-[var(--appTextColor)] text-xl rounded-4xl w-7/9 h-2/3 flex flex-row overflow-hidden">
+			{/* left side */}
+			<div className="w-2/3 h-full bg-[var(--appBackgroundMain)] flex flex-col">
+				{/* top bar */}
+				<div className="h-12 text-black text-lg px-22 py-10 flex items-center justify-between">
+					<span className="ml-left font-semibold">{location}</span>
+					<span className="ml-right font-semibold">{date}</span>
+				</div>
+				{/* content */}
+				<div className="flex-grow flex flex-col items-center justify-center">
+					{/* Temperature */}
+					<p className="text-[10rem] font-bold relative mb-4">
+						{temperature}
+						<span className="absolute bottom-5 text-[10rem]">
+							°
+						</span>
+					</p>
+					{/* Subtitle */}
+					<h2 className="text-4xl font-medium -mt-5">{conditions}</h2>
+				</div>
+				{/* Forecast Cards */}
+				<div className="mb-10 mx-35 flex flex-row gap-4 items-center justify-evenly">
+					{fiveDayForecast.map((element, index) => (
+						<div
+							key={index}
+							className={`bg-[var(--appBackgroundMain)] h-35 rounded-xl w-1/6 flex flex-col justify-evenly items-center ${
+								element.day === "Today"
+									? "outline outline-2 outline-gray-200"
+									: ""
+							}`}
+						>
+							<p className="text-[0.8rem] mt-6 text-gray-600 font-medium flex-grow">
+								{element.day}
+							</p>
+							<p className="text-2xl text-gray-600 font-semibold flex-grow">
+								{element.temperature}
+								<span className="absolute text-2xl">°</span>
+							</p>
+							<p className="text-[0.8rem] text-gray-400 font-medium flex-grow">
+								{element.conditions}
+							</p>
+						</div>
+					))}
+				</div>
+			</div>
+			{/* right side */}
+			<div className="w-1/3 h-full bg-[var(--appBackgroundSide)] flex items-center justify-center">
+				Right
+			</div>
+		</div>
+	);
 }
